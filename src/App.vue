@@ -65,7 +65,51 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  background: #FFFFFF;
+}
 .ais-clear--disabled {
   display: none; /* cb hides the clear button if no course level is selected */
+}
+
+/* refinement list */
+
+.ais-refinement-list__item {
+  margin-bottom: 5px;
+}
+
+.ais-refinement-list__item label {
+  display: flex;
+  align-items: center;
+  width: 200px;
+}
+
+.ais-refinement-list__item input {
+  margin-right: 12px;
+}
+
+.ais-refinement-list__value {
+  color: #808A96;
+  text-transform: uppercase;
+  flex-grow: 1;
+}
+.ais-refinement-list__count {
+    margin-left: auto;
+    background-color: black;
+    color: #fff;
+    align-items: center;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    font-weight: bold;
+    font-size: 12px;
+    height: 24px;
+    justify-content: center;
+    line-height: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    white-space: nowrap;
+    border-radius: 20%;
+    vertical-align: top;
 }
 </style>
