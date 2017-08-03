@@ -23,7 +23,7 @@
       </template>
     </ais-no-results>
 <div class="refinement_needs_bem">
-    <ais-refinement-list attribute-name="courseLevel" :sort-by="['count:desc']"> <!-- using count here as this means we'll have UG first, PGT second then PGR due to the amount of courses we have -->
+    <ais-refinement-list attribute-name="courseLevelName" :sort-by="['count:desc']"> <!-- using count here as this means we'll have UG first, PGT second then PGR due to the amount of courses we have -->
     <!-- <p slot="header">Header if we need to hide the entire block at some point i.e. no results, hide header as well</p> -->
     <p slot="header">Level of Study</p>
     </ais-refinement-list>
@@ -111,7 +111,7 @@ label {
 .ais-refinement-list__item label {
   display: flex;
   align-items: center;
-  width: 200px;
+  // width: 200px;
 }
 
 .ais-refinement-list__item input {
@@ -120,7 +120,7 @@ label {
 
 .ais-refinement-list__value {
   color: #808A96;
-  text-transform: uppercase;
+  text-transform: capitalize;
   flex-grow: 1;
 }
 .ais-refinement-list__count {
