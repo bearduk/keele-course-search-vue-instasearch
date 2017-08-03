@@ -47,7 +47,7 @@
           <a :href="result.urlPath">
             <ais-highlight :result="result" attribute-name="courseTitle"></ais-highlight>
           </a> <span class="result_divide_needs_bem">|</span> 
-          <span>{{result.courseLevel}}</span>
+          <span class="needs_bem_result_level">{{result.courseLevelName}}</span>
           <!-- <p>{{result.urlPath}}</p> -->
         </p>        
         <!-- <footer><hr /></footer> --> <!-- cb slot if needed -->
@@ -83,7 +83,9 @@ body {
 .ais-clear--disabled {
   display: none; /* cb hides the clear button if no course level is selected */
 }
-
+.needs_bem_result_level {
+  text-transform: capitalize;
+}
 .result_divide_needs_bem {
   color: maroon;
   font-weight: bold;
