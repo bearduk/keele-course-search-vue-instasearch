@@ -78,6 +78,10 @@ body {
   margin-bottom: 5px;
 }
 
+label {
+    cursor: pointer;
+}
+
 .ais-refinement-list__item label {
   display: flex;
   align-items: center;
