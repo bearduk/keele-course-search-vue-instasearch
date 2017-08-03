@@ -17,15 +17,19 @@
       No courses found for <i>{{ props.query }}</i>.
       </template>
     </ais-no-results>
-
+<div class="refinement_needs_bem">
     <ais-refinement-list attribute-name="courseLevel" :sort-by="['count:desc']"> <!-- using count here as this means we'll have UG first, PGT second then PGR due to the amount of courses we have -->
     <!-- <p slot="header">Header if we need to hide the entire block at some point i.e. no results, hide header as well</p> -->
+    <p slot="header">Level of Study</p>
     </ais-refinement-list>
 
     <ais-clear :clears-query="false">
       <span class="ais-clear__label">Clear filter</span>
       <!-- cb try and hide if nothing selected? v-show or just use css class for display none -->
     </ais-clear>
+
+  </div>
+
 
     <ais-stats></ais-stats>
 
@@ -37,7 +41,7 @@
         <p>
           <a :href="result.urlPath">
             <ais-highlight :result="result" attribute-name="courseTitle"></ais-highlight>
-          </a>
+          </a> | 
           <span>{{result.courseLevel}}</span>
         </p>        
         <!-- <footer><hr /></footer> --> <!-- cb slot if needed -->
@@ -71,6 +75,15 @@ body {
 .ais-clear--disabled {
   display: none; /* cb hides the clear button if no course level is selected */
 }
+
+/* refinement block */
+.refinement_needs_bem {
+  background-color: #e0e0e0;
+  width: 20%;
+  padding: 5px 20px 20px 20px;
+  border-radius: 5px;
+}
+
 
 /* refinement list */
 
