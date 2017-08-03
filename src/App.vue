@@ -9,6 +9,8 @@
              'snippetEllipsisText': '...'
            }"
   >
+
+  <h1>Course Finder</h1>
   <ais-input placeholder="inline placeholder"></ais-input>
 
     <ais-search-box placeholder="no bind on placeholder text" :autofocus="true">
@@ -43,16 +45,18 @@
     <ais-results :results-per-page="20"> <!-- cb setting manually for now, just remove this for default -->
       <template scope="{ result }">
         <!-- <header><hr /></header> --> <!-- cb slot if needed -->
-        <p>
-          <a :href="result.urlPath">
-            <ais-highlight :result="result" attribute-name="courseTitle"></ais-highlight>
-          </a> <span class="result_divide_needs_bem">|</span> 
-          <span class="needs_bem_result_level">{{result.courseLevelName}}</span>
-          <!-- <p>{{result.urlPath}}</p> -->
-        </p>        
-        <!-- <footer><hr /></footer> --> <!-- cb slot if needed -->
-        <ais-snippet :result="result" attribute-name="snippet"></ais-snippet>
-        <!-- note that attribute-name snippet is the json 'snippet' -->
+        <div class="needs_bem_result">
+          <p>
+            <a :href="result.urlPath">
+              <ais-highlight :result="result" attribute-name="courseTitle"></ais-highlight>
+            </a> <span class="result_divide_needs_bem">|</span> 
+            <span class="needs_bem_result_level">{{result.courseLevelName}}</span>
+            <!-- <p>{{result.urlPath}}</p> -->
+          </p>        
+          <!-- <footer><hr /></footer> --> <!-- cb slot if needed -->
+          <ais-snippet :result="result" attribute-name="snippet"></ais-snippet>
+          <!-- note that attribute-name snippet is the json 'snippet' -->
+        </div>
       </template>
 
     </ais-results>
@@ -79,12 +83,16 @@ export default {
 <style lang="scss">
 body {
   background: #FFFFFF;
+  font-family: Sans-Serif;
 }
 .ais-clear--disabled {
   display: none; /* cb hides the clear button if no course level is selected */
 }
 .needs_bem_result_level {
   text-transform: capitalize;
+}
+.needs_bem_result {
+  margin-bottom: 2rem;
 }
 .result_divide_needs_bem {
   color: maroon;
