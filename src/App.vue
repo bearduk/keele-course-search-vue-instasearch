@@ -3,6 +3,11 @@
     app-id="HT7VYJG3KU"
     api-key="d37bbf3291b226676c9f3f1937e865d3"
     index-name="dev_COURSES"
+           :query-parameters="{
+             attributesToSnippet: [
+             'snippet:26'],
+             'snippetEllipsisText': '...'
+           }"
   >
   <ais-input placeholder="inline placeholder"></ais-input>
 
@@ -43,8 +48,11 @@
             <ais-highlight :result="result" attribute-name="courseTitle"></ais-highlight>
           </a> <span class="result_divide_needs_bem">|</span> 
           <span>{{result.courseLevel}}</span>
+          <!-- <p>{{result.urlPath}}</p> -->
         </p>        
         <!-- <footer><hr /></footer> --> <!-- cb slot if needed -->
+        <ais-snippet :result="result" attribute-name="snippet"></ais-snippet>
+        <!-- note that attribute-name snippet is the json 'snippet' -->
       </template>
 
     </ais-results>
