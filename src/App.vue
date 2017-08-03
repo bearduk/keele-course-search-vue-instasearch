@@ -16,6 +16,11 @@
       </template>
     </ais-no-results>
 
+    <ais-refinement-list attribute-name="courseLevel">
+    <!-- <p slot="header">Header if we need to hide the entire block at some point i.e. no results, hide header as well</p> -->
+    </ais-refinement-list>
+
+
     <ais-results :results-per-page="5"> <!-- cb setting manually for now, just remove this for default -->
       <template scope="{ result }">
         <!-- <header><hr /></header> --> <!-- cb slot if needed -->
