@@ -9,6 +9,8 @@
     <ais-search-box placeholder="no bind on placeholder text" :autofocus="true">
     </ais-search-box>
 
+
+
     <!-- cb overriding default content for no results found -->
     <ais-no-results>
       <template scope="props">
@@ -16,12 +18,20 @@
       </template>
     </ais-no-results>
 
-    <ais-refinement-list attribute-name="courseLevel">
+    <ais-refinement-list attribute-name="courseLevel" :sort-by="['count:desc']"> <!-- using count here as this means we'll have UG first, PGT second then PGR due to the amount of courses we have -->
     <!-- <p slot="header">Header if we need to hide the entire block at some point i.e. no results, hide header as well</p> -->
     </ais-refinement-list>
 
+    <ais-clear :clears-query="false">
+      <span class="ais-clear__label">Clear filter</span>
+      <!-- cb try and hide if nothing selected? v-show or just use css class for display none -->
+    </ais-clear>
 
-    <ais-results :results-per-page="5"> <!-- cb setting manually for now, just remove this for default -->
+    <ais-stats></ais-stats>
+
+    Results per page: <ais-results-per-page-selector :options="[5, 10, 20, 50, 100]"></ais-results-per-page-selector>
+
+    <ais-results :results-per-page="20"> <!-- cb setting manually for now, just remove this for default -->
       <template scope="{ result }">
         <!-- <header><hr /></header> --> <!-- cb slot if needed -->
         <p>
@@ -34,7 +44,10 @@
       </template>
 
     </ais-results>
-    <ais-pagination></ais-pagination>
+    <ais-pagination :padding="5">
+<!--     <span slot="previous">previous</span>
+    <span slot="next">next</span> -->
+    </ais-pagination>
   </ais-index>
 </template>
 
@@ -51,31 +64,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-// #app {
-//   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
-//   text-align: center;
-//   color: #2c3e50;
-//   margin-top: 60px;
-// }
-
-// h1, h2 {
-//   font-weight: normal;
-// }
-
-// ul {
-//   list-style-type: none;
-//   padding: 0;
-// }
-
-// li {
-//   display: inline-block;
-//   margin: 0 10px;
-// }
-
-// a {
-//   color: #42b983;
-// }
+<style lang="scss">
+.ais-clear--disabled {
+  display: none; /* cb hides the clear button if no course level is selected */
+}
 </style>
