@@ -2,6 +2,9 @@
 
 > Keele Course Finder using Algolia Vue InstantSearch
 
+VUE ROUTER on router branch. Will sync query only, not facets. urlSync coming from Algolia hopefully after beta.
+Note that the url query is used in the index set up.
+
 ## Build Setup
 
 ``` bash
