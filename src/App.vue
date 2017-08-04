@@ -1,20 +1,29 @@
 <template>
   <ais-index
+    :search-store="searchStore" :query="query"
+
+
+           :query-parameters="{
+             attributesToSnippet: [
+             'snippet:25'],
+             'snippetEllipsisText': '...',
+             'query': this.$route.query.q
+           }"
+  >
+<!-- credentials now in the script searchStore but to revert to the vanilla set up just re-enter the following lines into the <ais-index> tag -->
+<!--
     app-id="HT7VYJG3KU"
     api-key="d37bbf3291b226676c9f3f1937e865d3"
     index-name="dev_COURSES"
-           :query-parameters="{
-             attributesToSnippet: [
-             'snippet:26'],
-             'snippetEllipsisText': '...'
-           }"
-  >
-
+-->
   <h1>Course Finder</h1>
-  <ais-input placeholder="inline placeholder"></ais-input>
+  
+  <!-- this.$route.query.q = <span>{{kSearchQuery}}</span><br /> -->
 
-    <ais-search-box placeholder="no bind on placeholder text" :autofocus="true">
-    </ais-search-box>
+  <ais-input placeholder="inline placeholder"></ais-input>
+  <!-- <input type="text" v-model="kSearchQuery"></input> --> <!-- normal input for testing -->
+  <ais-search-box placeholder="no bind on placeholder text" :autofocus="true">
+  </ais-search-box>
 
 
 
@@ -24,6 +33,7 @@
       No courses found for <i>{{ props.query }}</i>.
       </template>
     </ais-no-results>
+
 <div class="refinement_needs_bem">
     <ais-refinement-list attribute-name="courseLevelName" :sort-by="['count:desc']"> <!-- using count here as this means we'll have UG first, PGT second then PGR due to the amount of courses we have -->
     <!-- <p slot="header">Header if we need to hide the entire block at some point i.e. no results, hide header as well</p> -->
@@ -69,15 +79,41 @@
 
 
 <script>
+import { createFromAlgoliaCredentials } from 'vue-instantsearch';
+const searchStore = createFromAlgoliaCredentials(
+    'HT7VYJG3KU',
+    'd37bbf3291b226676c9f3f1937e865d3'
+  );
+searchStore.indexName = 'dev_COURSES';
+
 export default {
-  name: 'app'
-  // data() {
-  //   return {
-  //     sbplaceholder: 'chris bind placeholder',
-  //     somethingelse: ''
-  //   }
-  // }
-}
+  name: 'app',
+  props: {
+      query: {
+        type: String,
+        // default: this.$route.query.q
+        default: this.kSearchQuery
+      }
+    },
+  data() {
+    return {
+      searchStore,
+      kSearchQuery: 'ee'
+    };
+  },
+  created(){
+    this.kSearchQuery = this.$route.query.q;
+    // this.kSearchQuery = 'bob';
+  },
+  watch: {
+    'searchStore.query'(value) {
+      this.$router.push({
+        name: 'search',
+        query: { q: value },
+      });
+    }
+  }
+};
 </script>
 
 <style lang="scss">
