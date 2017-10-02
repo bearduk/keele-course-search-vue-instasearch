@@ -84,7 +84,7 @@ const searchStore = createFromAlgoliaCredentials(
     'HT7VYJG3KU',
     'd37bbf3291b226676c9f3f1937e865d3'
   );
-searchStore.indexName = 'dev_COURSES';
+searchStore.indexName = 'keele_main_COURSES';
 
 export default {
   name: 'app',
